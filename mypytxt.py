@@ -15,25 +15,24 @@ print("====================================")
 inptcommand = ""
 sourcefile = ""
 outfile = ""
-#sourcefile = input("Enter source file's full path. ")
-#outfile = input("Enter destination file's full path. ")
-#if (path.exists(sourcefile)):
-#    print("")
-#else:
-#    input("Not a valid file. Goodbye!")  
-#    inptcommand = "exit"  
+sourcefile = input("Enter source file's full path. ")
+if (path.exists(sourcefile)):
+     outfile = sourcefile+".out"
+else:
+    input("Not a valid file. Goodbye!")  
+    inptcommand = "exit"  
 
 commandfound=0
 while (inptcommand != "exit"):
+       
+
+    if (path.exists(sourcefile)):
+        outfile = sourcefile+".out"
+    else:
+        input("Not a source file. Goodbye!")  
+        inptcommand = "source"  
+
     inptcommand = input("~] ")
-    sfile = pathlib.Path(sourcefile)
-
-    if  sfile.exists(): x=0
-    else: 
-      sourcefile = input("Enter source file's full path.. ")
-      outfile = sourcefile+".out"
-
-    
 
     #-------------------------------------------------------
     # Display Source and Destination files
@@ -69,6 +68,16 @@ while (inptcommand != "exit"):
       totxt = input("Enter string to use. ")
       replaceall.ReplaceAll(sourcefile,outfile,fromtxt,totxt)  
 
+
+    #-------------------------------------------------------
+    # Append string to file
+    #-------------------------------------------------------
+    if(inptcommand == "replace"):
+      commandfound=1 
+      fromtxt = input("Enter string to replace. ")
+      totxt = input("Enter string to use. ")
+      replaceall.Replace(sourcefile,outfile,fromtxt,totxt)    
+
     #-------------------------------------------------------
     # Append string to file
     #-------------------------------------------------------
@@ -93,11 +102,38 @@ while (inptcommand != "exit"):
       copyfile.Copy(sourcefile,outfile)      
 
     #-------------------------------------------------------
+    # Rename source
+    #-------------------------------------------------------
+    if(inptcommand == "rename"):
+      commandfound=1 
+      newfile = input("Enter new name for "+ sourcefile+" ")
+      os.rename(sourcefile,newfile)
+      sourcefile = newfile
+
+    #-------------------------------------------------------
+    # Rename source
+    #-------------------------------------------------------
+    if(inptcommand == "remove"):
+      commandfound=1 
+      newfile = input("Enter file to remove ")
+      if (path.exists(newfile)):
+         os.remove(newfile)
+
+      
+ 
+
+    #-------------------------------------------------------
     # Display output file file
     #-------------------------------------------------------
     if(inptcommand == "display"):
       commandfound=1 
-      display.Display(outfile)    
+      yesno = input("Source instead of destination ? (y/n) ")
+      if(yesno=="y"):
+        print("Displaying source "+sourcefile)
+        display.Display(sourcefile)      
+      else:  
+        print("Displaying destination "+outfile)
+        display.Display(outfile)    
 
     #-------------------------------------------------------
     # Insert string to file

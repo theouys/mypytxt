@@ -6,7 +6,7 @@ def printhelp():
     These are the commands:
     help          - This will open up this screen.
     swop          - Make the outputfile the sourcefile
-    display       - Display output file.
+    display       - Display source or output file.
     insert        - Insert text at the beginnig of the line.
     append        - Append text to the end of the line.
     from          - Insert text from position x to each line. 
@@ -15,5 +15,7 @@ def printhelp():
     count         - Number of lines and characters.
     !             - Run a OS commands.
     source        - New Source file
+    rename        - Rename Source File
+    copy          - Copy source file.
     ?             - Display source and destination file names
     """)
