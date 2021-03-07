@@ -10,7 +10,7 @@ import pathlib
 from os import path
 
 print("====================================")
-print("mytxt - Your text file manupilator.")
+print("mypytxt - Your text file manupilator.")
 print("====================================")
 inptcommand = ""
 sourcefile = ""
@@ -27,23 +27,13 @@ commandfound=0
 while (inptcommand != "exit"):
     inptcommand = input("~] ")
     sfile = pathlib.Path(sourcefile)
-    ofile = pathlib.Path(outfile)
 
     if  sfile.exists(): x=0
-    else: sourcefile = input("Enter source file's full path.. ")
-
-    if ofile.exists(): x=0
     else: 
-        outfile = input("Enter destination file's full path.. ")
-        writeoutfile.write(outfile,"")
-
-    if (sourcefile == outfile):
-        print("Source and destination cannot be the same")
-        sourcefile = input("Enter source file's full path. ")
-        outfile = input("Enter destination file's full path. ")
+      sourcefile = input("Enter source file's full path.. ")
+      outfile = sourcefile+".out"
 
     
-
 
     #-------------------------------------------------------
     # Display Source and Destination files
@@ -62,13 +52,7 @@ while (inptcommand != "exit"):
       commandfound=1 
       sourcefile = input("Enter source file's full path. ")
 
-    #-------------------------------------------------------
-    # Specify a new desitnation File
-    #-------------------------------------------------------
-    if(inptcommand == "destination"):
-      commandfound=1 
-      outfile = input("Enter destination file's full path. ")
-
+    
     #-------------------------------------------------------
     # Display Help
     #-------------------------------------------------------

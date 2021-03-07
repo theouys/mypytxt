@@ -15,6 +15,5 @@ def printhelp():
     count         - Number of lines and characters.
     !             - Run a OS commands.
     source        - New Source file
-    destination   - New Destination file
     ?             - Display source and destination file names
     """)
