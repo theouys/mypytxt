@@ -12,10 +12,11 @@ def printhelp():
     from          - Insert text from position x to each line. 
     replaceall    - Replace all occurences of a text string in a file.
     replace       - Replace a text string in a file base on user acceptance.
-    count         - Number of lines and characters.
+    count         - Number of lines.
     !             - Run a OS commands.
     source        - New Source file
     rename        - Rename Source File
     copy          - Copy source file.
+    concat        - Concatenate source with destination. (TIP! Create one first)
     ?             - Display source and destination file names
     """)

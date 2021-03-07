@@ -1,6 +1,7 @@
 import writeoutfile
 import help
 import append
+import count
 import insert
 import copyfile
 import display
@@ -28,11 +29,12 @@ while (inptcommand != "exit"):
 
     if (path.exists(sourcefile)):
         outfile = sourcefile+".out"
+        inptcommand = input("~] ")
     else:
         input("Not a source file. Goodbye!")  
         inptcommand = "source"  
 
-    inptcommand = input("~] ")
+    
 
     #-------------------------------------------------------
     # Display Source and Destination files
@@ -51,7 +53,7 @@ while (inptcommand != "exit"):
       commandfound=1 
       sourcefile = input("Enter source file's full path. ")
 
-    
+      
     #-------------------------------------------------------
     # Display Help
     #-------------------------------------------------------
@@ -59,6 +61,18 @@ while (inptcommand != "exit"):
       commandfound=1 
       help.printhelp()
 
+    #-------------------------------------------------------
+    # Count lines
+    #-------------------------------------------------------
+    if(inptcommand == "count"):
+      commandfound=1 
+      yesno = input("Count lines in source or destination ? (s/d) ")
+      if(yesno=="s"):
+        print("Count lines in source "+sourcefile)
+        count.Count(sourcefile)      
+      else:  
+        print("Count lines in destination "+outfile)
+        count.Count(outfile)    
     #-------------------------------------------------------
     # Append string to file
     #-------------------------------------------------------
@@ -95,11 +109,26 @@ while (inptcommand != "exit"):
 
 
     #-------------------------------------------------------
-    # Clone source
+    # Copy source
     #-------------------------------------------------------
     if(inptcommand == "copy"):
       commandfound=1 
       copyfile.Copy(sourcefile,outfile)      
+
+    #-------------------------------------------------------
+    # Concat source
+    #-------------------------------------------------------
+    if(inptcommand == "concat"):
+      commandfound=1 
+      copyfile.Concatenate(sourcefile,outfile)        
+
+    #-------------------------------------------------------
+    # Concat x number of times source
+    #-------------------------------------------------------
+    if(inptcommand == "concatx"):
+      commandfound=1 
+      xtimes = input("Enter x number of times to concat. ")
+      copyfile.Concat_ntimes(sourcefile,outfile, int(xtimes))      
 
     #-------------------------------------------------------
     # Rename source
@@ -115,9 +144,13 @@ while (inptcommand != "exit"):
     #-------------------------------------------------------
     if(inptcommand == "remove"):
       commandfound=1 
-      newfile = input("Enter file to remove ")
-      if (path.exists(newfile)):
-         os.remove(newfile)
+      yesno = input("Remove source or destination ? (s/d) ")
+      if(yesno=="s"):
+        if (path.exists(sourcefile)):
+         os.remove(sourcefile)
+      else:  
+        if (path.exists(outfile)):
+         os.remove(outfile)
 
       
  
@@ -127,8 +160,8 @@ while (inptcommand != "exit"):
     #-------------------------------------------------------
     if(inptcommand == "display"):
       commandfound=1 
-      yesno = input("Source instead of destination ? (y/n) ")
-      if(yesno=="y"):
+      yesno = input("Display source or destination ? (s/d) ")
+      if(yesno=="s"):
         print("Displaying source "+sourcefile)
         display.Display(sourcefile)      
       else:  
