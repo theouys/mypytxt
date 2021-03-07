@@ -10,7 +10,7 @@
 - cd mypytxt
 - Then run the following commands
      - sudo mkdir /opt/mypytxt
-     - copy all the *.py files to the above directory.
-     - sudo echo "python3 mypytxt" > /opt/mypytxt/mypytxt
+     - sudo cp *.py /opt/mypytxt
+     - use your favourite text editor and create a file called /opt/mypytxt/mypytxt add the following to it - python3 mypytxt
      - sudo chmod +x /opt/mypytxt/mypytxt
      - sudo ln -s /opt/mypytxt/mypytxt /usr/bin/mypytxt
